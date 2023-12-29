@@ -4,13 +4,10 @@ const { Admin, User, Course } = require("../db");
 const router = Router();
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = require('../config')
-// Admin Routes
+
 router.post('/signup', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    console.log(JWT_SECRET, 'Secret');
-    // check if user with this username already exists
-    console.log(username, 'username');
     await Admin.create({
         username: username,
         password: password

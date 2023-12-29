@@ -4,7 +4,7 @@ const userMiddleware = require("../middleware/user");
 const { User, Course } = require("../db");
 const { JWT_SECRET } = require("../config");
 const jwt = require('jsonwebtoken')
-// User Routes
+
 router.post('/signup', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -54,7 +54,6 @@ router.post('/courses/:courseId', userMiddleware, async (req, res) => {
 
 router.get('/purchasedCourses', userMiddleware, async (req, res) => {
     const user = await User.findOne({ username: req.username })
-    console.log(user, 'user');
     const courses = await Course.find({
         _id: {
             '$in': user.purchasedCourses
